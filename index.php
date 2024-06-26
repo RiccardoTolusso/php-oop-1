@@ -3,6 +3,11 @@ class Movie
 {
     private $title;
 
+    public function __construct($title)
+    {
+        $this->setTitle($title);
+    }
+
     public function setTitle($title)
     {
         $this->title = $title;
@@ -14,7 +19,6 @@ class Movie
     }
 }
 
-const indianaJones = new Movie();
+const indianaJones = new Movie("test3");
 
-indianaJones->setTitle("test2");
 var_dump(indianaJones->getTitle());
