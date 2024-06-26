@@ -29,7 +29,7 @@ class Movie
         if (@getimagesize($image)) {
             $this->image = $image;
         } else {
-            # throw new Exception(" Immagine non trovata / URL non valido ");
+            throw new Exception(" Immagine non trovata / URL non valido ");
         }
     }
 
@@ -51,6 +51,10 @@ class Movie
 }
 
 const indianaJones = new Movie("test3");
-indianaJones->setImage("https://m.media-amazon.com/images/I/81m503asdadLbg4L._AC_UF1000,1000_QL80_.jpg");
+try {
+    indianaJones->setImage("https://m.media-amazon.com/images/I/81m503Lbg4L._AC_UF1000,1000_QL80_.jpg");
+} catch (Exception $e) {
+    echo "<div style='background-color:orange; color:white'>$e</div>";
+}
 indianaJones->setGenres("azione", "avventura", "archeologia");
 var_dump(indianaJones);
