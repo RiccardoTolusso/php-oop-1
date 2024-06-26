@@ -1,0 +1,17 @@
+[
+    {
+        "title": "indiana jones",
+        "image": null,
+        "description": "running around temples",
+        "vote": 8,
+        "genres": ["action", "adventure"]
+    },
+    {
+        "title": "indiana jones",
+        "image": null,
+        "description": "running around temples",
+        "vote": 8,
+        "genres": ["action", "adventure"]
+    }
+
+]

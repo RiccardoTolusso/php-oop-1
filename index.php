@@ -1,60 +1,46 @@
 <?php
-class Movie
-{
-    private string $title;
-    private string $image = "default image";
-    private string $description;
-    private int $vote;
-    private array $genres = ["templi", "spedizioni"];
+require_once(__DIR__ . "/Models/Movie.php");
+require_once(__DIR__ . "/database/movies.php");
 
-    public function __construct($title)
-    {
-        $this->setTitle($title);
-    }
+$movies = getMovies();
+?>
 
-    # TITLE GETTER AND SETTER    
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    public function getTitle()
-    {
-        return $this->title;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-    # IMAGE GETTER AND SETTER    
-    public function setImage($image)
-    {
-        if (@getimagesize($image)) {
-            $this->image = $image;
-        } else {
-            throw new Exception(" Immagine non trovata / URL non valido ");
-        }
-    }
+<body>
+    <?php foreach ($movies as $movie) : ?>
+        <div>
+            <ul>
+                <li>
+                    <?php echo $movie->getTitle() ?>
+                </li>
+                <li>
+                    <?php echo $movie->getImage() ?>
+                </li>
+                <li>
+                    <?php echo $movie->getDescription() ?>
+                </li>
+                <li>
+                    Voto :<?php echo $movie->getVote() ?>
+                </li>
+                <li> Generi:
+                    <ul>
+                        <?php foreach ($movie->getGenres() as $genre) : ?>
+                            <li> <?php echo $genre ?> </li>
+                        <?php endforeach ?>
+                    </ul>
+                </li>
+            </ul>
+            <hr>
+        </div>
+    <?php endforeach ?>
+</body>
 
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    # TITLE GETTER AND SETTER    
-    public function setGenres(...$genres)
-    {
-        $this->genres = [...$this->genres, ...$genres];
-    }
-
-    public function getGenres()
-    {
-        return $this->genres;
-    }
-}
-
-const indianaJones = new Movie("test3");
-try {
-    indianaJones->setImage("https://m.media-amazon.com/images/I/81m503Lbg4L._AC_UF1000,1000_QL80_.jpg");
-} catch (Exception $e) {
-    echo "<div style='background-color:orange; color:white'>$e</div>";
-}
-indianaJones->setGenres("azione", "avventura", "archeologia");
-var_dump(indianaJones);
+</html>
